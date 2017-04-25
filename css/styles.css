@@ -53,6 +53,21 @@ button {
   cursor: pointer;
 }
 
+button.btn-lg {
+  padding: 10px 20px;
+  font-size: 32px;
+}
+button.btn-success {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+button.btn-warning {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
 .tag {
   display: inline-block;
   padding: .2em .6em .3em;
@@ -98,4 +113,8 @@ section:nth-child(2) {
 }
 section:nth-child(2) > div {
   margin-bottom: 2em;
+}
+
+.gps-buttons {
+  text-align: center;
 }

@@ -10,6 +10,10 @@ const elements = {
             container: document.getElementById('gps-cords-container'),
             x: document.getElementById('gps-cords-x'),
             y: document.getElementById('gps-cords-y')
+        },
+        btn: {
+            start: document.getElementById('gps-btn-start'),
+            stop: document.getElementById('gps-btn-stop')
         }
     },
     math: {
@@ -18,20 +22,26 @@ const elements = {
 };
 
 const WebApp = {
-    onGpsStart: () => {
+    gpsStart: () => {
         elements.gps.status.on.classList.remove('hide');
         elements.gps.status.off.classList.add('hide');
 
         elements.gps.cords.container.classList.remove('hide');
         elements.gps.cords.x.innerText = '-';
         elements.gps.cords.y.innerText = '-';
+
+        elements.gps.btn.start.classList.add('hide');
+        elements.gps.btn.stop.classList.remove('hide');
     },
 
-    onGpsStop: () => {
+    gpsStop: () => {
         elements.gps.status.off.classList.remove('hide');
         elements.gps.status.on.classList.add('hide');
 
         elements.gps.cords.container.classList.add('hide');
+
+        elements.gps.btn.stop.classList.add('hide');
+        elements.gps.btn.start.classList.remove('hide');
     },
 
     onGpsUpdate: (x, y) => {
@@ -50,14 +60,24 @@ const math  = NativeApp.getMath();
 
 elements.gps.delay.value = gps.getDelay();
 
-elements.gps.delay.addEventListener('change', function(e){
+elements.gps.btn.start.addEventListener('click', (e) => {
+    gps.start();
+    WebApp.gpsStart();
+});
+elements.gps.btn.stop.addEventListener('click', (e) => {
+    gps.stop();
+    WebApp.gpsStop();
+});
+
+elements.gps.delay.addEventListener('change', (e) => {
     gps.setDelay(e.target.value);
 });
-elements.math.sum.addEventListener('click', function(e){
+
+elements.math.sum.addEventListener('click', (e) => {
     alert(math.sum([1, 3.14, 'jazzy']));
 });
 
-gps.onStart('WebApp.onGpsStart');
-gps.onStop('WebApp.onGpsStop');
-gps.onUpdate('WebApp.onUpdate');
+gps.onUpdate('WebApp.onGpsUpdate');
+
+
 

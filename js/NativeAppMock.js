@@ -2,12 +2,12 @@ if(!NativeApp){
     var NativeApp = {
         getGps: function(){
             return {
-                onStart: function(method){
-                    console.log('gps.onStart', method);
+                start: function(){
+                    console.log('gps.start');
                 },
 
-                onStop: function(method){
-                    console.log('gps.onStop', method);
+                stop: function(){
+                    console.log('gps.stop');
                 },
 
                 onUpdate: function(method){
@@ -15,7 +15,7 @@ if(!NativeApp){
                 },
 
                 setDelay: function(value){
-                    console.log('gps.setDelay');
+                    console.log('gps.setDelay', value);
                 },
 
                 getDelay: function(){
